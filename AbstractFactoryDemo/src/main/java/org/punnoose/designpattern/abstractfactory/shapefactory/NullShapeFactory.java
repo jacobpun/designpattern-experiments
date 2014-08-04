@@ -1,7 +1,7 @@
 package org.punnoose.designpattern.abstractfactory.shapefactory;
 
+import org.punnoose.designpattern.abstractfactory.abstractshape.Shape;
 import org.punnoose.designpattern.abstractfactory.concreteshape.NullShape;
-import org.punnoose.designpattern.abstractfactory.shape.abstractshape.Shape;
 
 public class NullShapeFactory extends ShapeFactory {
 

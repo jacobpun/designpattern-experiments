@@ -1,6 +1,6 @@
 package org.punnoose.designpattern.abstractfactory.concreteshape;
 
-import org.punnoose.designpattern.abstractfactory.shape.abstractshape.DisplayFriendlyShape;
+import org.punnoose.designpattern.abstractfactory.abstractshape.DisplayFriendlyShape;
 
 public class DisplayFriendlyCircle extends DisplayFriendlyShape {
 	@Override

@@ -1,6 +1,6 @@
 package org.punnoose.designpattern.abstractfactory.concreteshape;
 
-import org.punnoose.designpattern.abstractfactory.shape.abstractshape.Shape;
+import org.punnoose.designpattern.abstractfactory.abstractshape.Shape;
 
 public class NullShape extends Shape {
 

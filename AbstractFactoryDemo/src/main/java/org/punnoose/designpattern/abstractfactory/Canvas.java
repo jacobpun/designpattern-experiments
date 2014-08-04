@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.punnoose.designpattern.abstractfactory.shape.abstractshape.Shape;
+import org.punnoose.designpattern.abstractfactory.abstractshape.Shape;
 import org.punnoose.designpattern.abstractfactory.shapefactory.NullShapeFactory;
 import org.punnoose.designpattern.abstractfactory.shapefactory.ShapeFactory;
 

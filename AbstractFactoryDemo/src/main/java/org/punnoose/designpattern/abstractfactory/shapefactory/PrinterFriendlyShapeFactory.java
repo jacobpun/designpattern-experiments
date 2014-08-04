@@ -3,8 +3,8 @@ package org.punnoose.designpattern.abstractfactory.shapefactory;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.punnoose.designpattern.abstractfactory.abstractshape.Shape;
 import org.punnoose.designpattern.abstractfactory.concreteshape.NullShape;
-import org.punnoose.designpattern.abstractfactory.shape.abstractshape.Shape;
 
 public class PrinterFriendlyShapeFactory extends ShapeFactory {
 	private Map<String,String> printerFriendlyShapes = new HashMap<String,String>(){{

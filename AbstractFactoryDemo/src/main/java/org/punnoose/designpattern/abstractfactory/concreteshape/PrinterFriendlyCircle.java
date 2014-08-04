@@ -1,6 +1,6 @@
 package org.punnoose.designpattern.abstractfactory.concreteshape;
 
-import org.punnoose.designpattern.abstractfactory.shape.abstractshape.PrinterFriendlyShape;
+import org.punnoose.designpattern.abstractfactory.abstractshape.PrinterFriendlyShape;
 
 public class PrinterFriendlyCircle extends PrinterFriendlyShape {
 	@Override
