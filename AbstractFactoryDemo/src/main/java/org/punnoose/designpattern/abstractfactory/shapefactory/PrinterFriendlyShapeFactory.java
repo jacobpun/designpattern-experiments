@@ -7,16 +7,14 @@ import org.punnoose.designpattern.abstractfactory.abstractshape.Shape;
 import org.punnoose.designpattern.abstractfactory.concreteshape.NullShape;
 
 public class PrinterFriendlyShapeFactory extends ShapeFactory {
-	private Map<String,String> printerFriendlyShapes = new HashMap<String,String>(){{
-		put("rectangle","org.punnoose.designpattern.abstractfactory.concreteshape.PrinterFriendlyRectangle");
-		put("circle","org.punnoose.designpattern.abstractfactory.concreteshape.PrinterFriendlyCircle");
-	}};
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public Shape getShape(String shapeName) {
 		try {
-			Class<Shape> className = (Class<Shape>) Class.forName(printerFriendlyShapes.get(shapeName));
-			return className.newInstance();
+			String className = ShapeNameToFactoryClassNameMap.getClassName(shapeName);
+			Class<Shape> classObject = (Class<Shape>) Class.forName(className);
+			return classObject.newInstance();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -25,5 +23,19 @@ public class PrinterFriendlyShapeFactory extends ShapeFactory {
 			e.printStackTrace();
 		}
 		return new NullShape();
+	}
+
+	private static class ShapeNameToFactoryClassNameMap {
+		@SuppressWarnings("serial")
+		private static Map<String, String> printerFriendlyShapes = new HashMap<String, String>() {
+			{
+				put("rectangle", "org.punnoose.designpattern.abstractfactory.concreteshape.PrinterFriendlyRectangle");
+				put("circle", "org.punnoose.designpattern.abstractfactory.concreteshape.PrinterFriendlyCircle");
+			}
+		};
+
+		private static String getClassName(String shapeName) {
+			return printerFriendlyShapes.get(shapeName);
+		}
 	}
 }

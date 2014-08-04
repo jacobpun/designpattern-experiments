@@ -12,32 +12,26 @@ import org.punnoose.designpattern.abstractfactory.shapefactory.ShapeFactory;
 
 public class Canvas {
 
-	@SuppressWarnings("serial")
-	private Map<String, String> shapeFactories = new HashMap<String, String>() {
-		{
-			put("printerfriendly",
-					"org.punnoose.designpattern.abstractfactory.shapefactory.PrinterFriendlyShapeFactory");
-			put("displayfriendly",
-					"org.punnoose.designpattern.abstractfactory.shapefactory.DisplayFriendlyShapeFactory");
-		}
-	};
-
 	private ArrayList<Shape> shapesInCanvas = new ArrayList<Shape>();
 
 	public void addNewShape(String shapeName, String displayName) {
-		ShapeFactory factory = getFactory(displayName.toLowerCase().trim());
-		shapesInCanvas.add(factory.getShape(shapeName.toLowerCase().trim()));
+		ShapeFactory factory = getFactory(formatAsKey(displayName));
+		shapesInCanvas.add(factory.getShape(formatAsKey(shapeName)));
 	}
 
 	public List<Shape> getShapesInCanvas() {
 		return Collections.unmodifiableList(shapesInCanvas);
 	}
 
+	private String formatAsKey(String displayName) {
+		return displayName.toLowerCase().trim();
+	}
+
+	@SuppressWarnings("unchecked")
 	private ShapeFactory getFactory(String displayName) {
 		try {
-			@SuppressWarnings("unchecked")
-			Class<ShapeFactory> className = (Class<ShapeFactory>) Class
-					.forName(shapeFactories.get(displayName));
+			String factoryClassName = DisplayNameToFactoryClassNameMap.getClassName(displayName);
+			Class<ShapeFactory> className = (Class<ShapeFactory>) Class.forName(factoryClassName);
 			return className.newInstance();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -47,5 +41,19 @@ public class Canvas {
 			e.printStackTrace();
 		}
 		return new NullShapeFactory();
+	}
+
+	private static class DisplayNameToFactoryClassNameMap {
+		@SuppressWarnings("serial")
+		private static Map<String, String> shapeFactories = new HashMap<String, String>() {
+			{
+				put("printerfriendly", "org.punnoose.designpattern.abstractfactory.shapefactory.PrinterFriendlyShapeFactory");
+				put("displayfriendly", "org.punnoose.designpattern.abstractfactory.shapefactory.DisplayFriendlyShapeFactory");
+			}
+		};
+
+		private static String getClassName(String shapeName) {
+			return shapeFactories.get(shapeName);
+		}
 	}
 }
