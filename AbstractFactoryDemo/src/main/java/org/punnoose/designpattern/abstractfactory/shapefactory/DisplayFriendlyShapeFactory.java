@@ -12,9 +12,9 @@ public class DisplayFriendlyShapeFactory extends ShapeFactory {
 	@SuppressWarnings("unchecked")
 	public Shape getShape(String shapeName) {
 		try {
-			String className= ShapeNameToFactoryClassNameMap.getFactoryClassName(shapeName);
-			Class<Shape> classObject = (Class<Shape>) Class.forName(className);
-			return classObject.newInstance();
+			String factoryClassName= ShapeNameToFactoryClassNameMap.getFactoryClassName(shapeName);
+			Class<Shape> factoryClass = (Class<Shape>) Class.forName(factoryClassName);
+			return factoryClass.newInstance();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

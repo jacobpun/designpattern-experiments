@@ -31,8 +31,8 @@ public class Canvas {
 	private ShapeFactory getFactory(String displayName) {
 		try {
 			String factoryClassName = DisplayNameToFactoryClassNameMap.getFactoryClassName(displayName);
-			Class<ShapeFactory> className = (Class<ShapeFactory>) Class.forName(factoryClassName);
-			return className.newInstance();
+			Class<ShapeFactory> factoryClass = (Class<ShapeFactory>) Class.forName(factoryClassName);
+			return factoryClass.newInstance();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
