@@ -12,7 +12,7 @@ public class PrinterFriendlyShapeFactory extends ShapeFactory {
 	@SuppressWarnings("unchecked")
 	public Shape getShape(String shapeName) {
 		try {
-			String className = ShapeNameToFactoryClassNameMap.getClassName(shapeName);
+			String className = ShapeNameToFactoryClassNameMap.getFactoryClassName(shapeName);
 			Class<Shape> classObject = (Class<Shape>) Class.forName(className);
 			return classObject.newInstance();
 		} catch (ClassNotFoundException e) {
@@ -34,7 +34,7 @@ public class PrinterFriendlyShapeFactory extends ShapeFactory {
 			}
 		};
 
-		private static String getClassName(String shapeName) {
+		private static String getFactoryClassName(String shapeName) {
 			return printerFriendlyShapes.get(shapeName);
 		}
 	}

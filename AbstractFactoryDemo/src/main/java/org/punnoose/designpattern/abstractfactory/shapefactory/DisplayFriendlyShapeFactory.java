@@ -12,7 +12,7 @@ public class DisplayFriendlyShapeFactory extends ShapeFactory {
 	@SuppressWarnings("unchecked")
 	public Shape getShape(String shapeName) {
 		try {
-			String className= ShapeNameToFactoryClassNameMap.getClassName(shapeName);
+			String className= ShapeNameToFactoryClassNameMap.getFactoryClassName(shapeName);
 			Class<Shape> classObject = (Class<Shape>) Class.forName(className);
 			return classObject.newInstance();
 		} catch (ClassNotFoundException e) {
@@ -32,7 +32,7 @@ public class DisplayFriendlyShapeFactory extends ShapeFactory {
 			put("circle","org.punnoose.designpattern.abstractfactory.concreteshape.DisplayFriendlyCircle");
 		}};
 
-		private static String getClassName(String shapeName) {
+		private static String getFactoryClassName(String shapeName) {
 			return displayFriendlyShapes.get(shapeName);
 		}
 	}

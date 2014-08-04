@@ -30,7 +30,7 @@ public class Canvas {
 	@SuppressWarnings("unchecked")
 	private ShapeFactory getFactory(String displayName) {
 		try {
-			String factoryClassName = DisplayNameToFactoryClassNameMap.getClassName(displayName);
+			String factoryClassName = DisplayNameToFactoryClassNameMap.getFactoryClassName(displayName);
 			Class<ShapeFactory> className = (Class<ShapeFactory>) Class.forName(factoryClassName);
 			return className.newInstance();
 		} catch (ClassNotFoundException e) {
@@ -52,7 +52,7 @@ public class Canvas {
 			}
 		};
 
-		private static String getClassName(String shapeName) {
+		private static String getFactoryClassName(String shapeName) {
 			return shapeFactories.get(shapeName);
 		}
 	}
